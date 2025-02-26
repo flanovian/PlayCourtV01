@@ -28,18 +28,25 @@
             <%- include('../layouts/partials/alert.ejs') %>
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-6 slogan">
-                        <img class="img-fluid rounded mb-4" loading="lazy" src="/images/logo/logofull.png" width="345"
-                            height="80" alt="LinkChampions Logo">
-                        <hr>
-                        <h1>The ultimate arena to challenge yourself and be the best.</h1>
-                        <p class="lead">We open the door for all players to compete, win, and become champions.</p>
-                        <div class="text-endx">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
-                                class="bi bi-grip-horizontal" viewBox="0 0 16 16">
-                                <path
-                                    d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                            </svg>
+                        <img class="img-fluid rounded mb-4 d-none d-md-block" loading="lazy" src="/images/logo/logofull.png"
+                            width="345" height="80" alt="LinkChampions Logo">
+    
+                        <!-- Gambar untuk ponsel (di tengah) -->
+                        <img class="img-fluid rounded mx-auto d-block d-md-none" loading="lazy"
+                            src="/images/logo/logofull.png" width="345" height="80" alt="LinkChampions Logo">
+                        <hr class="d-none d-md-block">
+                        <div class="d-none d-md-block">
+                            <h1>The ultimate arena to challenge yourself and be the best.</h1>
+                            <p class="lead">We open the door for all players to compete, win, and become champions.</p>
+                            <div class="text-endx">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#750B0D"
+                                    class="bi bi-grip-horizontal" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                </svg>
+                            </div>
                         </div>
+    
                     </div>
                     <div class="col-md-6 py-3">
                         <div class="card register-card">

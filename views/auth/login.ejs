@@ -17,96 +17,107 @@
             <div class="row justify-content-center align-items-center">
 
                 <div class="col-md-6 slogan">
-                    <img class="img-fluid rounded mb-4" loading="lazy" src="/images/logo/logofull.png" width="345"
-                        height="80" alt="LinkChampions Logo">
-                    <hr>
-                    <h1>The ultimate arena to challenge yourself and be the best.</h1>
-                    <p class="lead">We open the door for all players to compete, win, and become champions.</p>
-                    <div class="text-endx">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
-                            class="bi bi-grip-horizontal" viewBox="0 0 16 16">
-                            <path
-                                d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <% if (successMessage && successMessage.length > 0) { %>
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <%= successMessage %>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <% } %>
-                                
-                                <% if (errorMessage && errorMessage.length > 0) { %>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <%= errorMessage %>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <% } %>
-                                
-                              
-                                
-                    <div class="card login-card">
-                        <div class="card-body p-4">
-                            <h3 class="text-center mb-4">Sign in</h3>
-                            <p class="text-center mb-4">Don't have an account? <a href="/register">Sign up</a></p>
-                            <form action="/login" method="POST" class="validated-form" novalidate>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" name ="email" id="email" placeholder="Email"
-                                        required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please fiils out this field...
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <div class="input-group">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"
-                                        required>
-                                        <span class="input-group-text" id="togglePasswordLogin" style="cursor: pointer;">
-                                            👁️
-                                        </span>
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please fiils out this field...
-                                    </div>
-                                </div>
-                                <!-- <div class="mb-3">
-                                    <a href="#!">Forgot password?</a>
-                                </div> -->
-                                <div class="d-grid mb-3">
-                                    <button type="submit" class="btn btn-primary">Log in now</button>
-                                </div>
-                            </form>
+                    <img class="img-fluid rounded mb-4 d-none d-md-block" loading="lazy" src="/images/logo/logofull.png"
+                        width="345" height="80" alt="LinkChampions Logo">
 
-                            <hr class="my-4">
-                            <p class="text-center mb-3">Or continue with</p>
-                            <div class="d-flex justify-content-center gap-3">
-                                <a href="/auth/google" class="btn btn-google">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-google" viewBox="0 0 16 16">
-                                        <path
-                                            d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-                                    </svg>
-                                    Google
-                                </a>
-
-                            </div>
+                    <!-- Gambar untuk ponsel (di tengah) -->
+                    <img class="img-fluid rounded mx-auto d-block d-md-none" loading="lazy"
+                        src="/images/logo/logofull.png" width="345" height="80" alt="LinkChampions Logo">
+                    <hr class="d-none d-md-block">
+                    <div class="d-none d-md-block">
+                        <h1>The ultimate arena to challenge yourself and be the best.</h1>
+                        <p class="lead">We open the door for all players to compete, win, and become champions.</p>
+                        <div class="text-endx">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#750B0D"
+                                class="bi bi-grip-horizontal" viewBox="0 0 16 16">
+                                <path
+                                    d="M2 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
                         </div>
                     </div>
+
+                </div>
+                <div class="col-md-6">
+                    <% if (successMessage && successMessage.length> 0) { %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <%= successMessage %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                        <% } %>
+
+                            <% if (errorMessage && errorMessage.length> 0) { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <%= errorMessage %>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                                <% } %>
+
+
+
+                                    <div class="card login-card">
+                                        <div class="card-body p-4">
+                                            <h3 class="text-center mb-4">Sign in</h3>
+                                            <p class="text-center mb-4">Don't have an account? <a href="/register">Sign
+                                                    up</a></p>
+                                            <form action="/login" method="POST" class="validated-form" novalidate>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                        placeholder="Email" required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please fiils out this field...
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" name="password"
+                                                            id="password" placeholder="Password" required>
+                                                        <span class="input-group-text" id="togglePasswordLogin"
+                                                            style="cursor: pointer;">
+                                                            👁️
+                                                        </span>
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Please fiils out this field...
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="mb-3">
+                                    <a href="#!">Forgot password?</a>
+                                </div> -->
+                                                <div class="d-grid mb-3">
+                                                    <button type="submit" class="btn btn-primary">Log in now</button>
+                                                </div>
+                                            </form>
+
+                                            <hr class="my-4">
+                                            <p class="text-center mb-3">Or continue with</p>
+                                            <div class="d-flex justify-content-center gap-3">
+                                                <a href="/auth/google" class="btn btn-google">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                                                    </svg>
+                                                    Google
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <script src="/js/authLogin.js"></script> 
+    <script src="/js/authLogin.js"></script>
 </body>
 
 
