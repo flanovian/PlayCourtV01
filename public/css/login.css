@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url('/images/bg01.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Rubik', sans-serif;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparansi hitam */
+    backdrop-filter: blur(10px); /* Efek blur */
+    z-index: -1; /* Menempatkan elemen di belakang konten lainnya */
+}
+
+.full-height {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slogan {
+    text-align: left;
+    padding: 20px;
+    color: white;
+}
+
+.register-card {
+    border: none;
+    border-radius: 10px;
+    /* background-color: rgba(255, 255, 255, 0.8);  */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px); /* Efek blur */
+}
+
+.btn-google {
+    background-color: #dd4b39;
+    color: white;
+}
+
+.btn-google:hover {
+    background-color: #c23321;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+}
+
+.btn-facebook:hover {
+    background-color: #2d4373;
+}
+
+.btn-apple {
+    background-color: #000;
+    color: white;
+}
+
+.btn-apple:hover {
+    background-color: #333;
+}

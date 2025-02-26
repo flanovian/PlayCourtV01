@@ -1,0 +1,280 @@
+<% layout('layouts/app') -%>
+    <div class="container">
+        <!-- Level Sekarang -->
+        <% if (currentUser.userType ==1) { %>
+         <div class="container mb-4">
+            <div class="row">
+                <div class="col-6 j">
+                    <div class="current-level  text-center">
+                        <h3 style="color: #0C0588;">Level Sekarang:</h3>
+                        <% mylevel.forEach(item=> {%>
+                            <%
+                            const levelImages = {
+                              'Beginner': 'beginner.png',
+                              'Intermediate': 'intermediate.png',
+                              'Advanced': 'elite.png'
+                            };
+                            const imageName = levelImages[item.level] || 'default.png';
+                          %>
+                          <img src="/images/lencana/<%= imageName %>" alt="Gambar Level" class="img-fluid" style="width: 15%; height: 15%;">
+                          
+                         <% }); %>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-4 text-center">
+                        <h3>Video Pengajuan Level</h3>
+                        <video width="600" height="400" controls>
+                            <source src="/video" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+         </div>
+         <% } %>
+         <% if (currentUser.userType !=1) { %>
+        <div class="current-level mb-4 text-center">
+            <h3 style="color: #0C0588;">Level Sekarang:</h3>
+            <% mylevel.forEach(item=> {%>
+                <%
+                const levelImages = {
+                  'Beginner': 'beginner.png',
+                  'Intermediate': 'intermediate.png',
+                  'Advanced': 'elite.png'
+                };
+                const imageName = levelImages[item.level] || 'default.png';
+              %>
+              <img src="/images/lencana/<%= imageName %>" alt="Gambar Level" class="img-fluid" style="width: 15%; height: 15%;">
+              
+             <% }); %>
+        </div>
+        <% } %>
+        <div class="container">
+            <!-- Menampilkan Video Pengajuan Level -->
+            <!-- <%# if (mylevel && mylevel[0] && mylevel[0].matchVideo) { %>
+                <div class="mb-4 text-center">
+                    <h3>Video Pengajuan Level</h3>
+                    <video width="600" height="400" controls>
+                        <source src="/video" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            <%# } %> -->
+
+                <div class="table-container mt-4">
+                    <% if (currentUser.userType !=1) { %>
+                    <div class="card text-dark mb-4" style="  background-color: #f9e4b7; border:none;">
+                        <div class="card-header">
+                            <strong>Prosedur Pengajuan Level</strong>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Pengajuan kenaikan level dilakukan agar dapat berpartisipasi pada tournament di
+                                    tingkat
+                                    yang lebih tinggi.</li>
+                                <li>Pengajuan kenaikan level dilakukan dengan cara pemain mengisi kuisioner yang sudah
+                                    disediakan pada form pengajuan level.</li>
+                                <li>Setiap pengajuan kenaikan level akan selalu direview berdasarkan rekaman yang pemain
+                                    kirim.</li>
+                                <li>Pengajuan kenaikan level dapat dilakukan beberapa kali.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <% } %>
+                    <!-- Header dengan Title -->
+                    <h3>Riwayat Pengajuan Level</h3>
+
+                    <!-- Filter dan Pencarian + Dropdown untuk sortir + Tombol Ajukan Level Baru -->
+                    <div class="d-flex justify-content-between my-3">
+                        <!-- Filter dan Pencarian + Dropdown untuk sortir (di sebelah kiri) -->
+                        <div class="d-flex">
+
+                        </div>
+
+                        <% if (currentUser.userType !=1) { %>
+                        <!-- Tombol untuk Mengajukan Level Baru (di sebelah kanan) -->
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#levelModal">Pengajuan
+                            Kenaikan Level</button>
+                        <% } %>
+                    </div>
+
+                    <table id="tbl-mylevel" class="table table-striped nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Level yang Diajukan</th>
+                                <th>Tanggal Pengajuan</th>
+                                <th>Status Pengajuan</th>
+                                <th>Hasil Review</th>
+                                <th>Catatan Review</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% let i=1; %>
+                                <% mylevel.forEach(item=> {%>
+                                    <% item.level_id.forEach(level=> {%>
+                                        <tr>
+                                            <td>
+                                                <%= i++ %>
+                                            </td>
+                                            <td>
+                                                <%= level.level %>
+                                            </td>
+                                            <td>
+                                                <%= new Date(level.submittedAt).toLocaleDateString("id-ID") %>
+                                            </td>
+                                            <% if (level.status=='Pending' ) { %>
+                                                <td><span class=" badge bg-warning"> Menunggu Review.. </span></td>
+                                                <% }else if (level.status=='Approved' ) {%>
+                                                    <td><span class=" badge bg-success"> Telah direview </span></td>
+                                                    <% }else if (level.status=='Rejected' ) {%>
+                                                        <td><span class=" badge bg-danger"> Pengajuan ditolak </span>
+                                                        </td>
+                                                        <% } %>
+                                                            <td>
+                                                                <%= level.levelReview %>
+                                                            </td>
+                                                            <td>
+                                                                <%= level.commentsReview %>
+                                                            </td>
+                                        </tr>
+
+                                        <% });%>
+                                            <% }); %>
+                        </tbody>
+
+                    </table>
+
+
+                    <!-- Tabel dengan Data -->
+
+                </div>
+
+                <!-- Modal Pengajuan Kuisioner untuk Level Baru -->
+                <div class="modal fade" id="levelModal" tabindex="-1" aria-labelledby="levelModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="levelModalLabel">Kuisioner Pengajuan Level</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Form Kuisioner -->
+                                <div class="form-container">
+                                    <form action="/mylevel" method="POST" enctype="multipart/form-data">
+                                        <!-- Pertanyaan 1 -->
+                                        <div class="mb-3">
+                                            <label for="age" class="form-label">Usia Pemain</label>
+                                            <input type="number" class="form-control" id="age" name="age" required>
+                                        </div>
+
+                                        <!-- Pertanyaan 2 -->
+                                        <div class="mb-3">
+                                            <label for="experience" class="form-label">Pengalaman Bermain Tenis
+                                                (tahun)</label>
+                                            <input type="number" class="form-control" id="experience" name="experience"
+                                                required>
+                                        </div>
+
+                                        <!-- Pertanyaan 3 -->
+                                        <div class="mb-3">
+                                            <label for="playstyle" class="form-label">Tipe Gaya Bermain</label>
+                                            <select class="form-select" id="playstyle" name="playstyle" required>
+                                                <option value="Aggressive">Agresif</option>
+                                                <option value="Defensive">Defensif</option>
+                                                <option value="Balanced">Seimbang</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Pertanyaan 4 -->
+                                        <div class="mb-3">
+                                            <label for="rating" class="form-label">Peringkat Anda Saat Ini (Jika
+                                                Ada)</label>
+                                            <input type="text" class="form-control" id="rating" name="rating">
+                                        </div>
+
+                                        <!-- Pengunggahan Video -->
+                                        <div class="mb-3">
+                                            <label for="match_video" class="form-label">Unggah Video Pertandingan
+                                                Terbaru</label>
+                                            <input type="file" class="form-control" id="match_video" name="matchVideo"
+                                                accept="video/*" required>
+                                            <div class="form-text" id="basic-addon4">Maksimal Ukuran File : 50 MB</div>
+                                        </div>
+
+
+                                        <!-- Level Pemain -->
+                                        <div class="mb-3">
+                                            <label for="level" class="form-label">Tentukan Level Anda Sendiri</label>
+                                            <select class="form-select" id="level" name="level" required>
+                                                <option value="Beginner">Beginner</option>
+                                                <option value="Intermediate">Intermediate</option>
+                                                <option value="Advanced">Advanced</option>
+                                            </select>
+                                            <small class="note">Catatan: Level yang Anda pilih akan ditinjau oleh admin
+                                                untuk konfirmasi lebih lanjut.</small>
+                                        </div>
+
+                                        <!-- Tombol Submit -->
+                                        <button type="submit" class="btn btn-primary">Kirim Kuisioner</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+
+
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+
+        <script>
+            new DataTable('#tbl-mylevel', {
+                responsive: true
+            });
+
+        </script>
+        <!-- Script untuk Search dan Sortir
+    <script>
+        // Pencarian
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const query = this.value.toLowerCase();
+            const rows = document.querySelectorAll('table tbody tr');
+            rows.forEach(function (row) {
+                const cells = row.getElementsByTagName('td');
+                const match = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(query));
+                row.style.display = match ? '' : 'none';
+            });
+        });
+
+        // Sortir berdasarkan Tanggal Pengajuan
+        document.getElementById('sortBy').addEventListener('change', function () {
+            const sortOrder = this.value;
+            sortTableByDate(sortOrder);
+        });
+
+        function sortTableByDate(order) {
+            const table = document.querySelector('table tbody');
+            const rows = Array.from(table.rows);
+            rows.sort((a, b) => {
+                const aDate = new Date(a.cells[2].textContent); // Kolom tanggal ada di kolom ke-3
+                const bDate = new Date(b.cells[2].textContent); // Kolom tanggal ada di kolom ke-3
+
+                return order === 'asc' ? aDate - bDate : bDate - aDate;
+            });
+            rows.forEach(row => table.appendChild(row));
+        }
+    </script> -->

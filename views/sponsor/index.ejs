@@ -1,0 +1,63 @@
+<% layout('layouts/app') -%>
+    <div class="container">
+        <!-- Level Sekarang -->
+
+        <div class="container">
+            <div class="table-container mt-4">
+
+                <!-- Header dengan Title -->
+                <h3>List Sponsor</h3>
+                <table id="tbl-players" class="table table-striped nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Level yang Diajukan</th>
+                            <th>Tanggal Pengajuan</th>
+                            <th>Status Pengajuan</th>
+                            <th>Hasil Review</th>
+                            <th>Catatan Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let i=1; %>
+                            <% for (spo of sponsor) { %>
+                                <tr>
+                                    <td>
+                                        <%= i++ %>
+                                    </td>
+                                    <td>
+                                        <%= spo.name %>
+                                    </td>
+                                    <td>
+                                        levelnya
+                                    </td>
+                                    <td>
+                                        winrate
+                                    </td>
+                                    <td>
+                                        status review
+                                    </td>
+                                    <td>
+                                        lihat review
+                                    </td>
+                                </tr>
+
+                                <% } %>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+       
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+        <script>
+            new DataTable('#tbl-players', {
+                responsive: true
+            });
+
+        </script>

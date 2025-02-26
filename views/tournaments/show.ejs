@@ -1,0 +1,219 @@
+<% layout('layouts/app') -%>
+    <link rel="stylesheet" href="/css/tournament_show.css">
+
+    <div class="row p-4 mb-4">
+        <div class="col-7 ">
+            <div class="card mb-3  " style="border: none; background-color: transparent;" >
+                <div class="row g-0">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <img src="/images/tournaments/logoTournament.png" class="img-fluid rounded-start" alt="..."
+                            style="width: 50%; height: 50%;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= tournament.name %>
+                            </h5>
+                            <p class="card-text my-0 py-0 d-sm-inline d-none"
+                                style="display:inline; letter-spacing: 0.25px;" class="py-2">
+                                <small class="text-body-secondary"><i class="fa-solid fa-trophy"></i>
+                                    <span style="text-transform: capitalize;">
+                                        <%= tournament.sportCategory %>
+                                    </span>
+                                    <span class="mx-1">⋅</span>
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                    <%= tournament.location %>
+                                </small>
+                            </p>
+                            <hr>
+                            <!-- </div> -->
+                            <div class="card-text">
+                                <!-- <small class="text-body-secondary"><b>Category: Double</b></small>
+                              </div>
+                              <div class="card-text pt-2"> -->
+                                <small class="text-body-secondary"><b>Start date: 07/04/2025</b></small>
+                            </div>
+                            <div class="card-text pt-2">
+                                <small class="text-body-secondary"><b>End date: 24/05/2025</b></small>
+                            </div>
+                            <div class="card-text pt-2">
+                                <small class="text-body-secondary"><b>The registration ends on 23/03/2025</b></small>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5 col-5 d-flex justify-content-center align-items-center text-center">
+
+            <div class="card p-3 " style="background-color: transparent; border: none;  width: 100%;" >   
+                      <!-- Status Tournament -->
+                        <h1 class="text-success capitalize-text mb-3">
+                            <%= tournament.status %>
+                        </h1>
+                        <!-- Button Group -->
+                        <% if (currentUser.userType ==1) { %>
+                        <div class="d-flex gap-1">
+                            <button type="submit" class="btn btn-secondary flex-fill">Close Registration</button>
+                            <a href="/tournaments/<%= tournament._id %>/edit" class="card-link btn btn-warning text-white">Edit</a>
+                            <!-- <button type="submit" class="btn btn-primary flex-fill">Edit</button> -->
+                        </div>
+                        <%}%>
+                    
+               
+            </div>
+        </div>
+        <hr>
+
+    </div>
+
+
+    <div class="row py-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active " id="detail-tab" data-bs-toggle="tab" data-bs-target="#detail"
+                    type="button" role="tab">Detail</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="players-tab" data-bs-toggle="tab" data-bs-target="#players" type="button"
+                    role="tab">Players</button>
+            </li>    
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button"
+                    role="tab">Schedule</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="bracket-tab" data-bs-toggle="tab" data-bs-target="#bracket" type="button"
+                    role="tab">Bracket</button>
+            </li>     
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="score-tab" data-bs-toggle="tab" data-bs-target="#score" type="button"
+                    role="tab">Score</button>
+            </li>
+            
+        </ul>
+    </div>
+    <!-- Tab Content -->
+    <div class="tab-content mt-3" id="myTabContent">
+        <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+            <div class="row">
+                <div class="div col-8">
+                    <div class="card" style="border: none;">
+                        <div class="card-body">
+                            <!-- Bagian Category, Max Player, Set Play, Max Level (Horizontal) -->
+                            <div class="d-flex justify-content-between flex-wrap mb-3 ">
+                                <p><i class="fas fa-list-alt text-danger"></i> <strong
+                                        class="text-danger">Category:</strong>
+                                    <strong>
+                                        <%= tournament.category %>
+                                    </strong>
+                                </p>
+                                <p><i class="fas fa-users  text-danger"></i> <strong class="text-danger">Max
+                                        Player:</strong><strong>
+                                        <%= tournament.maxPlayer %>
+                                    </strong>
+
+                                </p>
+                                <p><i class="fas fa-gamepad  text-danger"></i> <strong class="text-danger">Set
+                                        Play:</strong><strong>
+                                        <%= tournament.setPlay %>
+                                    </strong>
+
+                                </p>
+                                <p><i class="fas fa-star  text-danger"></i> <strong class="text-danger">Max
+                                        Level:</strong><strong>
+                                        <%= tournament.maxLevel %>
+                                    </strong>
+
+                                </p>
+                            </div>
+                            <hr>
+
+                            <!-- Bagian Deskripsi -->
+                            <div class="mb-3">
+                                <h6 class="card-subtitle mb-2 text-body-secondary">
+                                    <i class="fas fa-info-circle"></i> Description
+                                </h6>
+                                <p class="card-text">
+                                    <%= tournament.description %>
+                                </p>
+                            </div>
+                            <hr>
+
+                            <!-- Bagian Location Venue -->
+                            <div class="mb-3">
+                                <h6 class="card-subtitle mb-2 text-body-secondary">
+                                    <i class="fas fa-map-marker-alt"></i> Location
+                                </h6>
+                                <p class="card-text">
+                                    <%= tournament.location %>
+                                </p>
+
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="div col-4">
+                    <div class="row px-4">
+                        <h3>Rp. <%= tournament.price.toLocaleString("id-ID") %>
+                        </h3>
+                        
+                        <button type="submit" class="btn btn-danger shadow-lg floating-button <%= currentUser.userType === 1 ? 'disabled' : '' %>"
+                            style="height: 60px; border-radius: 10px;">
+                            <i class="fa-solid fa-user-plus"></i> Join Tournament
+                        </button>
+                        <div class="row px-0 pt-4">
+
+                            <div class="col">
+                                <div class="mb-3">
+                                    <h5 class="mb-1"><i class="fa-solid fa-calendar-days"></i> Registration Date</h5>
+                                    <p>
+                                        <%= new Date(tournament.startRegister).toLocaleDateString("id-ID", {
+                                            weekday: "long" , day: "2-digit" , month: "short" , year: "numeric" }) %>
+                                            <strong> - </strong>
+
+                                            <%= new Date(tournament.endRegister).toLocaleDateString("id-ID", {
+                                                weekday: "long" , day: "2-digit" , month: "short" , year: "numeric" })
+                                                %>
+                                    </p>
+                                </div>
+
+                                <div class="mb-3 text-danger">
+                                    <h5 class="mb-1"> <i class="fa-regular fa-calendar-days"></i> Match Date</h5>
+                                    <p>
+                                        <%= new Date(tournament.startMatch).toLocaleDateString("id-ID", {
+                                            weekday: "long" , day: "2-digit" , month: "short" , year: "numeric" }) %>
+                                            <strong> - </strong>
+
+                                            <%= new Date(tournament.endMatch).toLocaleDateString("id-ID", {
+                                                weekday: "long" , day: "2-digit" , month: "short" , year: "numeric" })
+                                                %>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="players" role="tabpanel" aria-labelledby="players-tab">
+            <p>Ini tab Players</p>
+        </div>
+        <div class="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+            <p>Ini tab schedule</p>
+        </div>    
+        <div class="tab-pane fade" id="bracket" role="tabpanel" aria-labelledby="bracket-tab">
+            <p>Ini tab Bracket</p>
+        </div>   
+        <div class="tab-pane fade" id="score" role="tabpanel" aria-labelledby="score-tab">
+            <p>Ini tab Score</p>
+        </div>
+        
+    </div>

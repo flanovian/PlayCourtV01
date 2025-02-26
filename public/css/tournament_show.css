@@ -1,0 +1,33 @@
+.floating-button {
+  height: 60px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  /* Shadow lebih tegas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-button:hover {
+  transform: translateY(-8px);
+  /* Tombol naik lebih tinggi saat hover */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+  /* Shadow lebih kuat saat hover */
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
+.form-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px grey;
+  margin: 20px auto;
+  max-width: 700px;
+}
+
+.step-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

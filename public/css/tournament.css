@@ -1,0 +1,68 @@
+/* Membuat kartu tetap konsisten dalam hal tinggi */
+.card {
+    display: flex;
+    flex-direction: column; /* Menjaga agar konten di dalam kartu terorganisir secara vertikal */
+    min-height: 300px; /* Tinggi minimum untuk kartu */
+    height: 100%; /* Memastikan kartu mengambil seluruh tinggi dari kolom */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Tambahkan efek transisi */
+    border: 1px solid #ddd; /* Border tipis dengan warna abu-abu terang */
+    border-radius: 5px; /* Membuat sudut border melengkung */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan ringan untuk efek melayang */
+    
+  }
+  .card:hover {
+    transform: translateY(-10px); /* Efek melayang naik */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk kesan melayang */
+  }
+
+  /* Menjaga card-body mengisi ruang yang tersisa */
+  .card-body {
+    flex-grow: 1; /* Agar body kartu mengisi ruang yang tersisa dalam kartu */
+  }
+  
+  /* Optional: Menjaga footer tidak mengecil */
+  .card-footer {
+    flex-shrink: 0; /* Menjaga agar footer kartu tidak mengecil */
+  }
+  
+  /* Menambahkan sedikit styling pada card image agar tetap rapi */
+  .card img {
+    width: 100%; /* Gambar mengisi seluruh lebar kartu */
+    object-fit: cover; /* Menjaga gambar agar tetap proporsional */
+  }
+  
+  /* Mengatur ukuran teks agar tidak terlalu besar pada header dan elemen lainnya */
+  .card-title {
+    font-size: 16px;
+    margin: 8px 0px 10px 0px;
+  }
+  
+  .card-text {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  
+  /* Jika ingin memastikan tombol memiliki ukuran yang seragam */
+  .btn.card-link {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .card-100{
+    height: 100%;
+  }
+  
+  .capitalize-text {
+    text-transform: capitalize;
+  }
+
+  
+  @media (max-width: 770px) { /* Berlaku untuk layar md (≤992px) dan lebih kecil */
+    .text-responsive-center {
+      text-align: center;
+    }
+  }
+
+  
+  

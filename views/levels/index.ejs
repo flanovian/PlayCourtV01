@@ -1,0 +1,94 @@
+
+<% layout('layouts/app') -%>
+
+    <div class="container">
+        <!-- Level Sekarang -->
+
+        <div class="container">
+
+            <div class="container py-2" style=" border-radius: 10px;">
+                <div class="row">
+                    <div class="col">
+                        <h3 style="color: #750B0D;">List Levels</h3>
+                        <div style="border-top: 4px solid #750B0D; width: 100%; margin: 10px 0;"></div>
+                    </div>
+
+                    <div class="col-auto">
+                        <a href="#" class="card-link btn btn-primary text-white mt-0" data-bs-toggle="modal"
+                            data-bs-target="#addLevelModal">
+                            <i class="fa-solid fa-circle-plus"></i> Add Levels
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="table-container mt-4">
+                <!-- Header dengan Title -->
+
+                <table id="tbl-players" class="table table-striped nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama Level</th>
+                            <th>Sport Category</th>
+                            <th>Point</th>
+                            <th>Lencana</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let i=1; %>
+                            <% for (level of levels) { %>
+                                <tr>
+                                    <td>
+                                        <%= i++ %>
+                                    </td>
+                                    <td>
+                                        <%= level.name %>
+                                    </td>
+                                    <td>
+                                        <%= level.sportCategory %>
+                                    </td>
+                                    <td>
+                                        <%= level.minPoints %> - <%= level.maxPoints %>
+                                    </td>
+                                    <td>
+                                        <%= level.badgeImage %>
+                                    </td>
+                                    <td>
+                                        <%= level.isActive %>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-primary text-white view-level" data-id="<%= level.id %>">
+                                            <i class="fa-solid fa-eye fa-sm"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-warning text-white edit-level" data-id="<%= level.id %>">
+                                            <i class="fa-solid fa-pen-to-square fa-sm"></i> 
+                                        </a>
+                                        <button class="btn btn-sm btn-danger delete-level" data-id="<%= level.id %>">
+                                            <i class="fa-solid fa-trash fa-sm"></i>
+                                        </button>
+                                    </td>                                    
+                                    
+                                </tr>
+
+                                <% } %>
+                    </tbody>
+
+                </table>
+
+          <!-- Panggil Modal -->
+    <%- include('create') %>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+        <script>
+            new DataTable('#tbl-players', {
+                responsive: true
+            });
+
+        </script>

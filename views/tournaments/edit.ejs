@@ -1,0 +1,155 @@
+<% layout('layouts/app') -%>
+<link rel="stylesheet" href="/css/tournament_show.css">
+
+    <h2 class="text-center" style = "color:#0C0588;">Edit Tournaments</h2>
+    <div class="col-6 offset-3">
+        <form id="tournamentForm" class="form-container" action="/tournaments" method="POST">
+            <!-- Step 1: Informasi Tournament -->
+            <div class="step" id="step1">
+              <div class="step-title">Step 1: Tournament Information</div>
+              <div class="mb-3">
+                <label for="name" class="form-label">Tournament Name</label>
+                <input type="text" name="tournament[name]" id="name" class="form-control" value="<%= tournament.name  %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" name="tournament[location]" id="location" class="form-control" value="<%= tournament.location  %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select name="tournament[category]" id="category" class="form-control"  required>
+                  <option value="">Select Category</option>
+                  <option value="tennis" <%= tournament.category =='tennis' ? 'selected':'' %>>Tennis</option>
+                  <option value="sepakbola" <%= tournament.category =='sepakbola' ? 'selected':'' %>>Sepak Bola</option>
+                </select>
+              </div>              
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="tournament[description]" id="description" class="form-control" value="<%= tournament.description  %>" ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="images" class="form-label">Tournament Banner</label>
+                <input type="file" name="tournament[images]" id="images" class="form-control" value="<%= tournament.images  %>" >
+              </div>
+              <button type="button" class="btn btn-primary next-step">Next</button>
+            </div>
+          
+            <!-- Step 2: Teknis Tournament -->
+            <div class="step d-none" id="step2">
+              <div class="step-title">Step 2: Tournament Technical Details</div>
+              <div class="mb-3">
+                <label for="maxPlayer" class="form-label">Max Player</label>
+                <input type="number" name="tournament[maxPlayer]" id="maxPlayer" class="form-control" value="<%= tournament.maxPlayer  %> required>
+              </div>
+              <div class="mb-3">
+                <label for="sportCategory" class="form-label">Sport Category</label>
+                <select name="tournament[sportCategory]" id="sportCategory" class="form-control" value="<%= tournament.sportCategory  %> required>
+                  <option value="">Select Sport Category</option>
+                  <option value="single">Single</option>
+                  <option value="double">Double</option>
+                  <option value="team">Team</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="maxLevel" class="form-label">Max Level</label>
+                <select name="tournament[maxLevel]" id="maxLevel" class="form-control" required>
+                  <option value="">Select Level</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Elite">Elite</option>
+                  <option value="Newbie">Newbie</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="setPlay" class="form-label">Set Play</label>
+                <input type="number" name="tournament[setPlay]" id="setPlay" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="startMatch" class="form-label">Start Match</label>
+                <input type="date" name="tournament[startMatch]" id="startMatch" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="endMatch" class="form-label">End Match</label>
+                <input type="date" name="tournament[endMatch]" id="endMatch" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="endMatch" class="form-label">Final Date</label>
+                <input type="date" name="tournament[finalDate]" id="finalDate" class="form-control" required>
+              </div>
+              <button type="button" class="btn btn-secondary prev-step">Previous</button>
+              <button type="button" class="btn btn-primary next-step">Next</button>
+            </div>
+          
+            <!-- Step 3: Informasi Pendaftaran -->
+            <div class="step d-none" id="step3">
+              <div class="step-title">Step 3: Registration Information</div>
+              <div class="mb-3">
+                <label for="startRegister" class="form-label">Start Register</label>
+                <input type="date" name="tournament[startRegister]" id="startRegister" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="endRegister" class="form-label">End Register</label>
+                <input type="date" name="tournament[endRegister]" id="endRegister" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" name="tournament[price]" id="price" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="author" class="form-label">Tournament Organizer</label>
+                <input type="text" name="tournament[author]" id="author" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="contact" class="form-label">Tournament Contact</label>
+                <input type="text" name="tournament[contact]" id="author" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select name="tournament[status]" id="status" class="form-control" required>
+                  <option value="">Select Status</option>
+                  <option value="open">Open</option>
+                  <option value="close">Close</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-secondary prev-step">Previous</button>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+    </div>
+
+    <script>
+      let currentStep = 1;
+    
+      function showStep(step) {
+        document.querySelectorAll(".step").forEach(s => s.classList.add("d-none"));
+        document.getElementById(`step${step}`).classList.remove("d-none");
+      }
+    
+      function validateStep(step) {
+        let isValid = true;
+        document.querySelectorAll(`#step${step} input, #step${step} select, #step${step} textarea`).forEach(input => {
+          if (!input.checkValidity()) {
+            isValid = false;
+            input.classList.add("is-invalid");
+          } else {
+            input.classList.remove("is-invalid");
+          }
+        });
+        return isValid;
+      }
+    
+      document.querySelectorAll(".next-step").forEach(button => {
+        button.addEventListener("click", () => {
+          if (validateStep(currentStep)) {
+            currentStep++;
+            showStep(currentStep);
+          }
+        });
+      });
+    
+      document.querySelectorAll(".prev-step").forEach(button => {
+        button.addEventListener("click", () => {
+          currentStep--;
+          showStep(currentStep);
+        });
+      });
+    </script>

@@ -1,0 +1,59 @@
+.navbar-custom {
+  background: linear-gradient(to right, #54668e  , #750B0D );
+  border-radius: 10px; /* Biar sudutnya melengkung */
+  margin: 10px auto; /* Tambahin jarak dari atas */
+  width: 95%; /* Biar nggak full kiri-kanan */
+}
+
+.navbar-custom .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important; /* Putih dengan opacity 90% */
+}
+
+.navbar-custom .nav-link.active {
+  font-weight: bold;
+}
+
+/* ======================== */
+/* 1️⃣ Warna Background Saat Klik Dropdown Item */
+/* ======================== */
+.dropdown-item:active, 
+.dropdown-item:focus {
+  background-color: #750B0D !important; /* Ubah warna latar belakang menjadi merah */
+  /* color: white !important; Warna teks agar kontras */
+}
+
+/* ======================== */
+/* 1️⃣ Hilangkan Jarak Atas Dropdown */
+/* ======================== */
+.dropdown-menu {  
+  padding-top: 0 !important; /* Hilangkan padding atas */
+  padding-bottom: 0 !important; 
+ 
+  overflow: hidden;
+}
+
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-behind {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  height: auto;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.text-front {
+  position: relative;
+  font-size: 24px;
+  margin-left: 20px; /* Sesuaikan margin sesuai kebutuhan */
+  z-index: 1;
+}
+

@@ -1,0 +1,70 @@
+<% layout('layouts/app') -%>
+    <div class="container">
+        <!-- Level Sekarang -->
+
+        <div class="container">
+            <div class="table-container mt-4">
+
+                <!-- Header dengan Title -->
+                <h3>List Pengajuan Level</h3>
+                <table id="tbl-levelup" class="table table-striped nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama Pemain</th>                            
+                            <th>Level Saat Ini</th>
+                            <th>Tanggal Pengajuan Terakhir</th>
+                            <th>Status Pengajuan</th>
+                            <th>Aksi</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let i=1; %>
+                            <% for (userlevel of userLevels) { %>
+                                <tr>
+                                    <td>
+                                        <%= i++ %>
+                                    </td>
+                                    <td>
+                                        <%= userlevel.user_id.fullname %>
+                                    </td>
+                                    <td>
+                                        <%= userlevel.level %>
+                                    </td>
+                                    <td>
+                                        <%= new Date(userlevel.submittedEnd).toLocaleDateString("id-ID")   %>
+                                    </td>                                   
+                                    <% if (userlevel.statusReview=='Pending' ) { %>
+                                        <td><span class=" badge bg-warning"> <%= userlevel.statusReview %> </span></td>
+                                        <% }else if (userlevel.statusReview=='Approved' ) {%>
+                                            <td><span class=" badge bg-success"> <%= userlevel.statusReview %> </span></td>
+                                            <% }else if (userlevel.statusReview=='Rejected' ) {%>
+                                                <td><span class=" badge bg-danger"> <%= userlevel.statusReview %> </span></td>
+                                                <% } %>
+
+                                    <td>
+                                        <a href="/levelup/<%= userlevel.user_id._id  %>" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-eye"></i> Lihat Detail
+                                          </a>
+                                    </td>
+                                </tr>
+
+                                <% } %>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+       
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+        <script>
+            new DataTable('#tbl-levelup', {
+                responsive: true
+            });
+
+        </script>

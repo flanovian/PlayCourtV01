@@ -1,0 +1,113 @@
+<% layout('layouts/app') -%>
+  <link rel="stylesheet" href="/css/tournament.css">
+
+
+  <ul>
+    <!-- <div class="d-flex p-2 " style="background-color: brown; border-radius: 10px;">
+      <div class=" flex-fill">
+        <h3 class="text-white ">All Tournaments</h3>
+      </div>
+      <div class="ms-auto ">
+        <a href="/tournaments/create" class="card-link btn btn-primary text-white"><i
+            class="fa-solid fa-circle-plus"></i> Add Tournament</a>
+      </div>
+    </div> -->
+
+    <div class="container py-3" style="background-color: #0C0588; border-radius: 10px;">
+      <div class="row">
+        <div class="col">
+          <h3 class="text-white ">All Tournaments</h3>
+        </div>
+        <% if (currentUser.userType ==1) { %>
+        <div class="col-auto">         
+            <a href="/tournaments/create" class="card-link btn btn-primary text-white mt-0">
+              <i class="fa-solid fa-circle-plus"></i> Add Tournament</a>
+         
+        </div>  
+        <% } %>      
+      </div>
+    </div>
+
+    <hr class="py-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+      <% for(const tournament of tournaments) { %>
+        <div class="col mb-4">
+          <div class="card">
+            <div class="row g-0 card-100">
+              <div class=" card-body col-md-4 d-flex justify-content-center align-items-center">
+                <img src="/images/tournaments/logoTournament.png" class="card-img-top" alt="..."
+                 >
+              </div>
+              <div class="col-md-8">
+                <div class="card-body text-responsive-center">
+                  <p class="card-text mb-0 head" style="font-size:12px;">
+                    <span class="capitalize-text">
+                      <%= tournament.sportCategory %>
+                    </span>
+                  </p>
+
+                  <h5 class="card-title" style="font-size:16px; margin: 8px 0px 10px 0px;">
+                    <%= tournament.name %>
+                  </h5>
+                  <p class="card-text my-10 py-0">
+                    <span style="font-size:12px;" class="capitalize-text">
+                      <img style="margin-right:6px; width:20px" src="images/tournaments/lencanaLevel.png"
+                        alt="Badge name">
+                      Level <%= tournament.maxLevel%>
+
+                    </span>
+                  </p>
+                  <span class="card-text px-2 py-1"
+                    style="font-size:12px; background-color: rgb(225 239 254); border-radius: 5px;">
+                    Registration <%= tournament.status%>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p class="card-text">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  <small class="text-secondary" style="font-size: 12px;">
+                    <%= new Date(tournament.startRegister).toLocaleDateString("id-ID") %> -
+                      <%= new Date(tournament.endRegister).toLocaleDateString("id-ID") %>
+                  </small>
+                </p>
+              </li>
+              <li class="list-group-item">
+                <p class="card-text capitalize-text">
+                  <i class="fa-solid fa-trophy"></i>
+                  Category : <%= tournament.category %>
+              </li>
+
+              <li class="list-group-item">
+                <p class="card-text">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                  Location : <%= tournament.location %>
+                </p>
+              </li>
+              <!-- <li class="list-group-item">
+                    <p class="card-text">
+                        <i class="bi bi-people"></i>
+                        Max Player : <%#= tournament.maxPlayer  %>
+                    </p> 
+                  </li>    -->
+              <li class="list-group-item">
+                <p class="card-text">
+                  <i class="fa-solid fa-money-bill-1-wave"></i>
+                  Price : Rp.<%= tournament.price.toLocaleString("id-ID") %>
+                </p>
+              </li>
+            </ul>
+            <div class="card-body">
+              <a href="/tournaments/<%= tournament._id  %>" class="btn btn-primary card-link">
+                View <%= tournament.title %>
+              </a>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+  </ul>
