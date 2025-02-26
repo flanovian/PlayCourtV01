@@ -140,6 +140,11 @@ app.use((req,res,next)=>{
 //     res.render('home')
 // })
 
+app.get('/api/test', (req, res) => {
+    res.json({ message: 'API is working!' });
+  });
+  
+
 // HomePage
 app.get('/', isAuth, (req, res) => {
     res.render('home', {
